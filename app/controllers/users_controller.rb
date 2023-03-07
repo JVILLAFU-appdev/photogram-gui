@@ -9,10 +9,9 @@ class UsersController < ApplicationController
 
   def show
 
-    # Parameters: {"name"=>"pele"}
-    url_username = params.fetch("name")
-    matching_usernames = User.where({:username => url_username })
-    @the_user = matching_usernames.first
+    url_username = params.fetch("path_name")
+    matching_photos = User.where({:username => url_username })
+    @the_user = matching_photos.first
     
     #if the_user == nil
     # redirect_to("/")
