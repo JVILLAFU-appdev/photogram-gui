@@ -9,8 +9,14 @@ class UsersController < ApplicationController
 
   def show
 
-    user_name = params.fetch("name")
-    @user = User.where({:username => user_name }).first
+    # Parameters: {"name"=>"pele"}
+    url_username = params.fetch("name")
+    matching_usernames = User.where({:username => url_username })
+    @the_user = matching_usernames.first
+    
+    #if the_user == nil
+    # redirect_to("/")
+    #else  
 
     render({ :template => "user_templates/show.html.erb"})
   end
