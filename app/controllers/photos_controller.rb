@@ -46,5 +46,22 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos/" + a_new_photo.id.to_s)
   end
+
+  def photo_update
+
+    foto_id = params.fetch("path_photo")
+
+    #Parameters: {"input_image"=>"https://robohash.org/dolorehicincidunt.png?size=300x300&set=set1", "input_caption"=>"Once you’ve accepted your flaws, no one can use them against you.", "path_photo"=>"955"}
+
+    update_image = params.fetch("input_image")
+    update_caption = params.fetch("input_caption")
+
+    update_photo = Photo.where({:id => foto_id}).first
+    update_photo.image = update_image
+    update_photo.caption = update_caption
+    update_photo.save
+
+    redirect_to("/photos/" + foto_id.to_s)
+  end
   
 end
