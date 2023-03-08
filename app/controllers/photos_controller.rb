@@ -27,4 +27,24 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos")
   end
+
+  def photo_insert
+
+    #Parameters: {"input_image"=>"https://groups.chicagobooth.edu/upload/booth/2021/image_upload_2203545_EVC_Club_Logo_White_106211542.png", "input_caption"=>"fff", "input_owner_id"=>"117"}
+
+   
+    input_image = params.fetch("input_image")
+    input_caption = params.fetch("input_caption")
+    input_owner_id = params.fetch("input_owner_id")
+    
+    a_new_photo = Photo.new
+    a_new_photo.image = input_image
+    a_new_photo.caption = input_caption
+    a_new_photo.owner_id = input_owner_id
+
+    a_new_photo.save
+
+    redirect_to("/photos/" + a_new_photo.id.to_s)
+  end
+  
 end
